@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f9f7f1, #c4d7f2);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+h1 {
+  color: #223344;
+  margin-bottom: 20px;
+}
+
+#game-container {
+  display: flex;
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(10, 50px);
+  grid-template-rows: repeat(10, 50px);
+  border: 3px solid #223344;
+  background: #f0e4c3;
+  position: relative;
+}
+
+.square {
+  border: 1px solid #aaa;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #555;
+}
+
+.square:nth-child(odd) {
+  background: #e4d9a7;
+}
+
+.square:nth-child(even) {
+  background: #d0c48f;
+}
+
+/* Pion styling */
+.pion {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  transition: all 0.6s ease;
+  border: 2px solid #222;
+}
+
+.pion.player1 {
+  background: #d63333;
+  border-color: #8b1a1a;
+  z-index: 10;
+}
+
+.pion.player2 {
+  background: #e1c542;
+  border-color: #aa8b1a;
+  z-index: 9;
+}
+
+/* Adjust pion offset so they don’t overlap exactly */
+.pion.player1 {
+  transform: translate(-8px, 0);
+}
+.pion.player2 {
+  transform: translate(8px, 0);
+}
+
+/* Info panel */
+#info-panel {
+  width: 300px;
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgb(0 0 0 / 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#dice-result {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+}
+
+#dice-number {
+  color: #cc0000;
+  font-size: 2.5rem;
+  margin-left: 10px;
+  display: inline-block;
+  animation: dice-bounce 1s ease forwards;
+}
+
+@keyframes dice-bounce {
+  0% { transform: translateY(-10px); opacity: 0; }
+  50% { transform: translateY(10px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+#roll-dice-btn {
+  padding: 12px 20px;
+  background-color: #2a74da;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#roll-dice-btn:hover:not(:disabled) {
+  background-color: #1457b8;
+}
+
+#roll-dice-btn:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+#turn-indicator {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+}
+
+#question-container {
+  background: #f9f9f9;
+  border: 2px solid #777;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+#question-text {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+#answers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.answer-btn {
+  background: #fff;
+  border: 2px solid #2a74da;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+  text-align: left;
+}
+
+.answer-btn:hover {
+  background-color: #d1e2ff;
+}
+
+.answer-btn.correct {
+  background-color: #80c280;
+  border-color: #387738;
+  color: white;
+}
+
+.answer-btn.wrong {
+  background-color: #d66;
+  border-color: #8b2222;
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#winner-message {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  color: #006400;
+  margin-top: 20px;
+}
